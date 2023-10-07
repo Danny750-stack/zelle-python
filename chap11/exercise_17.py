@@ -4,6 +4,7 @@ help understanding the concept of classes as they relate to graphics,
 because I have had similar struggles in previous problems."""
 
 from graphics import *
+from time import sleep
 
 class GraphicsGroup:
     def __init__(self, anchor):
@@ -22,6 +23,8 @@ class GraphicsGroup:
         # and for each, call object.move(dx, dy)                    
         for graphics_object in self.group:
             graphics_object.move(dx, dy)
+        self.anchor = Point(self.anchor.getX()+dx, self.anchor.getY()+dy)
+        
     
     def draw(self, win):
         for graphics_object in self.group:
@@ -52,9 +55,11 @@ def main():
         face.addObject(i)
     
     face.draw(win)
-    print(face.getAnchor())
     for i in range(20):
         face.move(.1, .1)
+        sleep(1)
+
+    print(face.getAnchor())
     win.getMouse()
 
 main()
